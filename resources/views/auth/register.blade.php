@@ -55,7 +55,7 @@
 							</div>
 						</div>
 						<div class="text-center mb-3">
-							Already have account? <a href="#">Log In</a>
+							Already have account? <a href="{{ url("login") }}">Log In</a>
 						</div>
 					</div>
 				</div>

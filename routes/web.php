@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarDetailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSewaController;
 use App\Http\Controllers\KwitansiController;
@@ -31,3 +33,5 @@ Route::get('/dashboard/dataSewa', [DataSewaController::class, 'index']);
 Route::get('/dashboard/kwitansi', [KwitansiController::class, 'index']);
 Route::get('/dashboard/laporanDataSewa', [LaporanDataSewaController::class, 'index']);
 Route::get('/dashboard/suratJalan', [SuratJalanController::class, 'index']);
+Route::get('/car', [CarController::class, 'index']);
+Route::get('/cars/carDetail', [CarDetailController::class, 'index']);

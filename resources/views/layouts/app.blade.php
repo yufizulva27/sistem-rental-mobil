@@ -89,32 +89,12 @@
             <!-- Main Content -->
             @yield('content')
 
-			{{-- <main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3">Data Sewa</h1>
-
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
-								</div>
-								<div class="card-body">
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</main> --}}
-
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="#" target="_blank"><strong>Bootstrap Admin Template</strong></a>&copy;
+								<a class="text-muted" href="#" target="_blank"><strong>Sistem Rental Mobil</strong></a> - <a class="text-muted" href="#" target="_blank"><strong></strong></a>&copy; <script>document.write(new Date().getFullYear());</script> All rights reserved
 							</p>
 						</div>
 					</div>
