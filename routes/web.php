@@ -25,13 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/registrasi', [RegisterController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard/dataSewa', [DataSewaController::class, 'index']);
 Route::get('/dashboard/kwitansi', [KwitansiController::class, 'index']);
 Route::get('/dashboard/laporanDataSewa', [LaporanDataSewaController::class, 'index']);
 Route::get('/dashboard/suratJalan', [SuratJalanController::class, 'index']);
-Route::get('/car', [CarController::class, 'index']);
+Route::get('/', [CarController::class, 'index']);
 Route::get('/cars/carDetail', [CarDetailController::class, 'index']);
