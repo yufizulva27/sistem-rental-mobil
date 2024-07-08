@@ -14,6 +14,25 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
+	<!-- CDN Datatables -->
+	<link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/autofill/2.7.0/css/autoFill.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/colreorder/2.0.3/css/colReorder.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/datetime/1.5.2/css/dataTables.dateTime.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/keytable/2.12.1/css/keyTable.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/rowgroup/1.5.0/css/rowGroup.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/searchbuilder/1.7.1/css/searchBuilder.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/searchpanes/2.3.1/css/searchPanes.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/select/2.0.3/css/select.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/staterestore/1.4.1/css/stateRestore.dataTables.min.css" rel="stylesheet">
+
+
 	<title>Dashboard</title>
 
 	<link href="{{ asset("assets/staticAdminDashboard/css/app.css") }}" rel="stylesheet">
