@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Account Users</h5>
-                        <a href="#" class="btn btn-primary mt-3">Tambah</a>
+                        <a href="{{ url('dashboard/account/create') }}" class="btn btn-primary mt-3">Tambah</a>
                         <div class="card-body">
                             <table id="myTable" class="table table-striped">
                                 <thead>

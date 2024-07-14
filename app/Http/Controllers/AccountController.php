@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -25,7 +26,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.accountSettings.create');
     }
 
     /**
@@ -36,7 +37,28 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
+
+        return redirect()->route('dashboard.account.index')
+                         ->with('success', 'User created successfully.');    
     }
 
     /**

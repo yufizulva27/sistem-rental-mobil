@@ -80,3 +80,9 @@ Route::post('/cars/completeBooking', [CarController::class, 'completeBooking'])-
 
 
 Route::get('/dashboard/account', [AccountController::class, 'index'])->name('dashboard.account.index');
+
+Route::get('/dashboard/account/create', [AccountController::class, 'create'])->name('dashboard.account.create');
+Route::post('/dashboard/account/store', [AccountController::class, 'store'])->name('dashboard.account.store');
+Route::get('/dashboard/account/{id}/edit', [AccountController::class, 'edit'])->name('dashboard.account.edit');
+Route::put('/dashboard/account/{id}', [AccountController::class, 'update'])->name('dashboard.account.update');;
+Route::delete('/dashboard/account/{id}', [AccountController::class, 'destroy'])->name('dashboard.account.destroy');
