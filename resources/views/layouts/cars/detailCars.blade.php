@@ -25,7 +25,11 @@
                             <p><strong>Tersedia:</strong> {{ $mobil->tersedia ? 'Ya' : 'Tidak' }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary py-2 mr-2 rounded" data-bs-toggle="modal" data-bs-target="#buyNowModal" data-mobil-id="{{ $mobil->id }}">Book now</button>
+                                    @if(Auth::check())
+                                        <button type="button" class="btn btn-primary py-2 mr-2 rounded" data-bs-toggle="modal" data-bs-target="#buyNowModal" data-mobil-id="{{ $mobil->id }}">Book now</button>
+                                    @else
+                                        <a href="{{ route('login') }}" class="btn btn-primary py-2 mr-2 rounded">Book now</a>
+                                    @endif
                                     <a href="{{ url('/') }}" class="btn btn-secondary py-2 rounded">Kembali</a>
                                 </div>
                             </div>

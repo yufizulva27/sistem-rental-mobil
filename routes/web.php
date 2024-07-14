@@ -14,6 +14,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuratJalanController;
+use App\Http\Controllers\UserProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,16 @@ Route::get('/registrasi', [RegisterController::class, 'index'])->name('register'
 Route::post('/registrasi', [RegisterController::class, 'store'])->name('register.store');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.submit');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -75,8 +87,9 @@ Route::delete('/dashboard/dataPenyewa/{id}', [PenyewaController::class, 'destroy
 
 Route::get('/', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
-Route::post('/cars/bookNow', [CarController::class, 'bookNow'])->name('cars.bookNow');
-Route::post('/cars/completeBooking', [CarController::class, 'completeBooking'])->name('cars.completeBooking');
+Route::post('/cars/bookNow', [CarController::class, 'bookNow'])->name('cars.bookNow')->middleware('auth');
+Route::post('/cars/completeBooking', [CarController::class, 'completeBooking'])->name('cars.completeBooking')->middleware('auth');
+
 
 
 Route::get('/dashboard/account', [AccountController::class, 'index'])->name('dashboard.account.index');

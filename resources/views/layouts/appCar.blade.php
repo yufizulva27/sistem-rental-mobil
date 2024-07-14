@@ -18,23 +18,62 @@
     <link rel="stylesheet" href="{{ asset('assets/landingpage/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/landingpage/css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
+    <style>
+        .nav-car {
+            position: relative;
+            color: #ffffff; /* Warna teks default */
+            transition: color 0.3s; /* Transisi warna teks saat hover */
+        }
+    
+        .nav-car::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; /* Jarak garis bawah dari teks */
+            left: 0;
+            width: 0%;
+            border-bottom: 2px solid #ffffff; /* Warna dan ketebalan garis bawah */
+            transition: width 0.3s; /* Transisi lebar garis bawah */
+        }
+    
+        .nav-car:hover::after {
+            width: 100%; /* Lebar garis bawah saat hover */
+        }
+    </style>        
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Rental<span>Mobil</span></a>
+            <a class="navbar-brand" href="{{ url('/') }}">Rental<span>Mobil</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Cars</a></li>
-                    <li class="nav-item active"><a href="{{ url('registrasi') }}" class="nav-link">Register</a></li>
-                    <li class="nav-item active"><a href="{{ url('login') }}" class="nav-link">Login</a></li>
+                    <li class="nav-item active nav-car"><a href="{{ url('/') }}" class="nav-link">Cars</a></li>
+                    @if(Auth::check())
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1em;">
+                                <i class="bi bi-person"></i> {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-size: 1em;">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item active"><a href="{{ url('registrasi') }}" class="nav-link" style="font-size: 1em;">Register</a></li>
+                        <li class="nav-item active"><a href="{{ url('login') }}" class="nav-link" style="font-size: 1em;">Login</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> 
 
     @yield('content')
 
@@ -168,14 +207,69 @@
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
-                </div>
+          <div class="row mb-5">
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2"><a href="#" class="logo">Rental<span>Mobil</span></a></h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                  <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                  <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                </ul>
+              </div>
             </div>
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-4 ml-md-5">
+                <h2 class="ftco-heading-2">Information</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="py-2 d-block">About</a></li>
+                  <li><a href="#" class="py-2 d-block">Services</a></li>
+                  <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
+                  <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+                  <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md">
+               <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Customer Support</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="py-2 d-block">FAQ</a></li>
+                  <li><a href="#" class="py-2 d-block">Payment Option</a></li>
+                  <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+                  {{-- <li><a href="#" class="py-2 d-block">How it works</a></li> --}}
+                  <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">Have a Questions?</h2>
+                  <div class="block-23 mb-3">
+                    <ul>
+                      {{-- <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li> --}}
+                      <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                      <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+  
+              <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Sistem Rental Mobil <i class="icon-heart color-danger" aria-hidden="true"></i>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+          </div>
         </div>
-    </footer>
-
+      </footer>
+      
+    
+  
+    <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
     <script src="{{ asset('assets/landingpage/js/jquery.min.js') }}"></script>
