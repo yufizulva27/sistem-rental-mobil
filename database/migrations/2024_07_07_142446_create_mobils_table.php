@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('brand');
             $table->string('nopol');
-            $table->decimal('price', 8, 2);
+            $table->integer('price');
             $table->string('image')->nullable();
             $table->boolean('tersedia');
             $table->timestamps();

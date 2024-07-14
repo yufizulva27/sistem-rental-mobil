@@ -1,6 +1,6 @@
-@extends('layouts.appCar');
+@extends('layouts.appCar')
 
-@section('content');
+@section('content')
 
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
@@ -9,182 +9,56 @@
                 <h2 class="mb-2">List Mobil Sewaan</h2>
             </div>
         </div>
+
+        @if(session('success'))
+            <div id="alert-success" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Menampilkan pesan error -->
+        @if(session('error'))
+            <div id="alert-error" class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-1.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
+                @foreach($mobils as $mobil)
+                    @if($mobil->tersedia)
+                    <div class="col-md-4">
+                        <div class="car-wrap rounded ftco-animate">
+                            <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset($mobil->image) }});">
                             </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="{{ url('cars/carDetail') }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                            <div class="text">
+                                <h2 class="mb-0"><a href="{{ route('cars.show', $mobil->id) }}">{{ $mobil->name }}</a></h2>
+                                <div class="d-flex mb-3">
+                                    <span class="cat">{{ $mobil->brand }}</span>
+                                    <p class="price ml-auto">Rp. {{ $mobil->price }} <span>/day</span></p>
+                                </div>
+                                <p class="d-flex mb-0 d-block">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyNowModal" data-mobil-id="{{ $mobil->id }}">Book Now</button>
+                                    <a href="{{ route('cars.show', $mobil->id) }}" class="btn btn-secondary py-2 ml-1">Details</a>
+                                </p>                                
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-2.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Range Rover</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Subaru</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-3.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-4.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-5.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Range Rover</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Subaru</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-6.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-7.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-8.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Range Rover</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Subaru</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-9.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-10.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-11.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Range Rover</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Subaru</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="car-wrap rounded ftco-animate">
-                        <div class="img rounded d-flex align-items-end" style="background-image: url({{ asset("assets/landingpage/images/car-12.jpg") }});">
-                        </div>
-                        <div class="text">
-                            <h2 class="mb-0"><a href="car-single.html">Mercedes Grand Sedan</a></h2>
-                            <div class="d-flex mb-3">
-                                <span class="cat">Cheverolet</span>
-                                <p class="price ml-auto">$500 <span>/day</span></p>
-                            </div>
-                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+
+@endsection
+
+@section('scripts')
+<script>
+    // Fungsi untuk menyembunyikan pesan sukses setelah 3 detik
+    setTimeout(function() {
+        $('.alert').fadeOut('fast');
+    }, 3000); // Waktu dalam milidetik (3 detik)
+</script>
 
 @endsection

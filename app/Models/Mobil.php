@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Mobil extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function dataSewas()
+    {
+        return $this->hasMany(DataSewa::class);
+    }
 }
+

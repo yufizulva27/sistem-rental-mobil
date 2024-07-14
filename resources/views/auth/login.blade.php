@@ -50,6 +50,9 @@
 								</div>
 							</div>
 						</div>
+						<div class="text-center mb-3">
+							Don't have an account? <a href="{{ url('registrasi') }}">Register Here</a>
+						</div>						
 					</div>
 				</div>
 			</div>
