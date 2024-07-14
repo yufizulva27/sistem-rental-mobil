@@ -69,7 +69,8 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('dashboard.accountSettings.show', compact('user'));
     }
 
     /**
@@ -80,7 +81,8 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('dashboard.accountSettings.edit', compact('user'));
     }
 
     /**
@@ -92,7 +94,31 @@ class AccountController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,'.$id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'password' => 'nullable|string|min:8',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->route('dashboard.account.index')
+                        ->with('success', 'User updated successfully.');
     }
 
     /**
@@ -103,6 +129,10 @@ class AccountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('dashboard.account.index')
+                        ->with('success', 'User deleted successfully.');
     }
 }

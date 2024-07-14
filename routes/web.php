@@ -86,3 +86,4 @@ Route::post('/dashboard/account/store', [AccountController::class, 'store'])->na
 Route::get('/dashboard/account/{id}/edit', [AccountController::class, 'edit'])->name('dashboard.account.edit');
 Route::put('/dashboard/account/{id}', [AccountController::class, 'update'])->name('dashboard.account.update');;
 Route::delete('/dashboard/account/{id}', [AccountController::class, 'destroy'])->name('dashboard.account.destroy');
+Route::get('/dashboard/account/{id}', [AccountController::class, 'show'])->name('dashboard.account.show');

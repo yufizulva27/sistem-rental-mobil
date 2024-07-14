@@ -33,7 +33,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Alamat</th>
+                                        {{-- <th>Alamat</th> --}}
                                         <th>Phone Number</th>
                                         <th>Email</th>
                                         <th>Role</th>
@@ -45,19 +45,18 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $s->name }}</td>
-                                            <td>{{ $s->address }}</td>
+                                            {{-- <td>{{ $s->address }}</td> --}}
                                             <td>{{ $s->phone_number }}</td>
                                             <td>{{ $s->email }}</td>
                                             <td>{{ $s->role }}</td>
                                                 <td>
-                                                    {{-- <a href="{{ route('dashboard.dataSewa.show', $s->id) }}" class="btn btn-sm btn-info">Show</a>
-                                                    <a href="{{ route('dashboard.dataSewa.edit', $s->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                                    <a href="{{ route('dashboard.dataSewa.print', $s->id) }}" class="btn btn-sm btn-success">Print</a> --}}
-                                                    {{-- <form action="{{ route('dashboard.dataSewa.destroy', $s->id) }}" method="POST" style="display: inline;">
+                                                    <a href="{{ route('dashboard.account.show', $s->id) }}" class="btn btn-sm btn-info">Show</a>
+                                                    <a href="{{ route('dashboard.account.edit', $s->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <form action="{{ route('dashboard.account.destroy', $s->id) }}" method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                                    </form> --}}
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                                    </form>
                                                 </td>
                                         </tr>
                                     @endforeach
