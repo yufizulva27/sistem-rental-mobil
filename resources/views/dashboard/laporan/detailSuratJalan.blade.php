@@ -26,8 +26,11 @@
                         <p><strong>Opsi Pengiriman:</strong> {{ $dataSewa->delivery_option ? 'Pengantaran' : 'Penjemputan' }}</p>
                         <p><strong>Driver:</strong> {{ $dataSewa->driver->name }}</p>
                         <hr>
-                        <p><strong>Alamat Penjemputan:</strong> {{ $dataSewa->alamat ?: '-' }}</p>
-                        <p><strong>Alamat Pengantaran:</strong> {{ $dataSewa->delivery_address ?: '-' }}</p>
+                        @if($dataSewa->delivery_option)
+                            <p><strong>Alamat Pengantaran:</strong> {{ $dataSewa->alamat ?: '-' }}</p>
+                        @else
+                            <p><strong>Alamat Penjemputan:</strong> {{ $dataSewa->alamat ?: '-' }}</p>
+                        @endif
                         <hr>
                         <p><strong>Catatan:</strong> {{ $dataSewa->notes ?: '-' }}</p>
                         <hr>
