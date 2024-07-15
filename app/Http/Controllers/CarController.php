@@ -113,4 +113,15 @@ class CarController extends Controller
 
         return redirect()->route('cars.index')->with('success', 'Booking completed successfully!');
     }
+
+    public function getPrice($mobil_id)
+    {
+        $mobil = Mobil::find($mobil_id);
+
+        if ($mobil) {
+            return response()->json(['price' => $mobil->price]);
+        }
+
+        return response()->json(['error' => 'Mobil not found'], 404);
+    }
 }

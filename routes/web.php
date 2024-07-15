@@ -89,6 +89,7 @@ Route::get('/', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::post('/cars/bookNow', [CarController::class, 'bookNow'])->name('cars.bookNow')->middleware('auth');
 Route::post('/cars/completeBooking', [CarController::class, 'completeBooking'])->name('cars.completeBooking')->middleware('auth');
+Route::get('/get-price/{mobil_id}', [CarController::class, 'getPrice'])->name('get.price');
 
 
 

@@ -121,8 +121,8 @@
                             <label for="jarak" class="form-label">Opsi Jarak</label>
                             <select class="form-control" id="jarak" name="jarak" required>
                                 <option value="" selected disabled><-- Pilih opsi --></option>
-                                <option value="1">Dalam Kota</option>
-                                <option value="0">Luar Kota</option>
+                                <option value="0">Dalam Kota</option>
+                                <option value="1">Luar Kota</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -340,50 +340,64 @@
         document.getElementById('bookNowButton').addEventListener('click', function() {
             var paymentOption = document.getElementById('payment_option').value;
             if (paymentOption === 'transfer') {
-                // Get form data
                 var mobil_id = document.getElementById('mobil_id').value;
-                var name = document.getElementById('name').value;
-                var alamat = document.getElementById('alamat').value;
-                var no_telp = document.getElementById('no_telp').value;
-                var email = document.getElementById('email').value;
-                var start_date = document.getElementById('start_date').value;
-                var end_date = document.getElementById('end_date').value;
-                var total_days = document.getElementById('total_days').value;
-                var jarak = document.getElementById('jarak').value;
-                var delivery_option = document.getElementById('delivery_option').value;
-                var name_driver = document.getElementById('name_driver').value;
 
-                // Calculate total amount
-                var harga_sewa_perhari = 100000; // Contoh harga sewa per hari
-                var total_amount = total_days * harga_sewa_perhari;
-                if (jarak == '0') {
-                    total_amount += total_amount * 0.2; // Tambah 20% jika luar kota
-                }
+                // AJAX request to get price
+                fetch('/get-price/' + mobil_id)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.price) {
+                            var harga_sewa_perhari = data.price;
 
-                // Set data to payment modal
-                document.getElementById('payment_mobil_id').value = mobil_id;
-                document.getElementById('payment_name').value = name;
-                document.getElementById('payment_alamat').value = alamat;
-                document.getElementById('payment_no_telp').value = no_telp;
-                document.getElementById('payment_email').value = email;
-                document.getElementById('payment_start_date').value = start_date;
-                document.getElementById('payment_end_date').value = end_date;
-                document.getElementById('payment_total_days').value = total_days;
-                document.getElementById('payment_jarak').value = jarak;
-                document.getElementById('payment_delivery_option').value = delivery_option;
-                document.getElementById('payment_name_driver').value = name_driver;
-                document.getElementById('payment_payment_option').value = paymentOption;
-                document.getElementById('total_amount').value = total_amount;
+                            var name = document.getElementById('name').value;
+                            var alamat = document.getElementById('alamat').value;
+                            var no_telp = document.getElementById('no_telp').value;
+                            var email = document.getElementById('email').value;
+                            var start_date = document.getElementById('start_date').value;
+                            var end_date = document.getElementById('end_date').value;
+                            var total_days = document.getElementById('total_days').value;
+                            var jarak = document.getElementById('jarak').value;
+                            var delivery_option = document.getElementById('delivery_option').value;
+                            var name_driver = document.getElementById('name_driver').value;
 
-                // Show payment modal
-                var paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'), {
-                    keyboard: false
-                });
-                paymentModal.show();
+                            // Calculate total amount
+                            var total_amount = total_days * harga_sewa_perhari;
+                            if (jarak == '0') {
+                                total_amount += total_amount * 0.2;
+                            }
+
+                            // Set data to payment modal
+                            document.getElementById('payment_mobil_id').value = mobil_id;
+                            document.getElementById('payment_name').value = name;
+                            document.getElementById('payment_alamat').value = alamat;
+                            document.getElementById('payment_no_telp').value = no_telp;
+                            document.getElementById('payment_email').value = email;
+                            document.getElementById('payment_start_date').value = start_date;
+                            document.getElementById('payment_end_date').value = end_date;
+                            document.getElementById('payment_total_days').value = total_days;
+                            document.getElementById('payment_jarak').value = jarak;
+                            document.getElementById('payment_delivery_option').value = delivery_option;
+                            document.getElementById('payment_name_driver').value = name_driver;
+                            document.getElementById('payment_payment_option').value = paymentOption;
+                            document.getElementById('total_amount').value = total_amount;
+
+                            // Show payment modal
+                            var paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'), {
+                                keyboard: false
+                            });
+                            paymentModal.show();
+                        } else {
+                            console.error('Error fetching price:', data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching price:', error);
+                    });
             } else {
                 document.getElementById('bookingForm').submit();
             }
         });
+
     </script>
 
 </body>
