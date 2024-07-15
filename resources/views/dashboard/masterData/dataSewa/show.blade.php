@@ -41,7 +41,7 @@
                                     <strong>Jarak:</strong> {{ $dataSewa->jarak ? 'Luar Kota' : 'Dalam Kota' }}
                                 </div>
                                 <div class="mb-3">
-                                    <strong>Jenis Pengiriman:</strong> {{ $dataSewa->delivery_option ? 'Penjemputan' : 'Pengantaran' }}
+                                    <strong>Jenis Pengiriman:</strong> {{ $dataSewa->delivery_option ? 'Pengantaran' : 'Penjemputan' }}
                                 </div>
                                 <div class="mb-3">
                                     <strong>Nama Supir:</strong> {{ $dataSewa->driver->name }}
