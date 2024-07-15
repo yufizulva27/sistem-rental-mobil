@@ -115,18 +115,24 @@
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item dropdown">
 							<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="{{ asset('assets/staticAdminDashboard/img/avatars/avatar-6.png') }}" class="avatar img-fluid rounded me-1" alt="User" /> <span class="text-dark">Hi, User</span>
+								<img src="{{ asset('assets/staticAdminDashboard/img/avatars/avatar-6.png') }}" class="avatar img-fluid rounded me-1" alt="User" /> 
+								<span class="text-dark">Hi, User</span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 									<path d="M14.696 5.204a.5.5 0 0 0-.696-.072L8 10.378 2 5.132a.5.5 0 0 0-.696.072l-.768.91a.5.5 0 0 0 .072.648l7 5.25a.5.5 0 0 0 .624 0l7-5.25a.5.5 0 0 0 .072-.648l-.768-.91z"/>
 								</svg>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Log Out</a></li>
+								<li>
+									<a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										@csrf
+									</form>
+								</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
-			</nav>			
+			</nav>				
 
             <!-- Main Content -->
             @yield('content')

@@ -2,7 +2,29 @@
 
 @section('content')
 
-    <div class="hero-wrap ftco-degree-bg" style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});" data-stellar-background-ratio="0.5">
+<style>
+    .hero-wrap {
+        position: relative;
+        background-image: url('{{ asset('assets/landingpage/images/bg_1.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        data-stellar-background-ratio: 0.5;
+    }
+    
+    .hero-wrap::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi 50% */
+        z-index: 1;
+    }
+    </style>
+    
+
+    <div class="hero-wrap " style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
         <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
@@ -16,7 +38,7 @@
         </div>
     </div>
 
-    <section class="ftco-section ftco-no-pt bg-light">
+    {{-- <section class="ftco-section ftco-no-pt bg-light">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-12 featured-top">
@@ -57,7 +79,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     
 
   <section class="ftco-section ftco-no-pt bg-light">
