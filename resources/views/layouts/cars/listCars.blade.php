@@ -24,19 +24,19 @@
     </style>
     
 
-    <div class="hero-wrap " style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap " style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});" data-stellar-background-ratio="0.2">
         <div class="overlay"></div>
         <div class="container">
-        <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
-            <div class="col-lg-8 ftco-animate">
-                <div class="text w-100 text-center mb-md-5 pb-md-5">
-                <h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
-                <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
-            </div>
+            <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+                <div class="col-lg-8 ftco-animate">
+                    <div class="text w-100 text-center mb-md-5 pb-md-5">
+                        <h1 class="mb-4" style="color: #fff;">Fast &amp; Easy Way To Rent A Car</h1>
+                        <p style="font-size: 18px; color: #fff;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
+    </div>    
 
     {{-- <section class="ftco-section ftco-no-pt bg-light">
         <div class="container">
@@ -82,25 +82,25 @@
     </section> --}}
     
 
-  <section class="ftco-section ftco-no-pt bg-light">
+  <section class="ftco-section ftco-no-pt bg-light" style="padding-top: 42px">
       <div class="container">
           <div class="row justify-content-center">
         <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-            <span class="subheading">What we offer</span>
+            <span class="subheading" style="font-size: 24px">What we offer</span>
           <h2 class="mb-2">Feeatured Vehicles</h2>
         </div>
       </div>
-      @if(session('success'))
-      <div id="alert-success" class="alert alert-success">
-          {{ session('success') }}
-      </div>
-  @endif
+        @if(session('success'))
+            <div id="alert-success" class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-  @if(session('error'))
-      <div id="alert-error" class="alert alert-danger">
-          {{ session('error') }}
-      </div>
-  @endif
+        @if(session('error'))
+            <div id="alert-error" class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
   
         <div class="row">
             @foreach($mobils as $mobil)
