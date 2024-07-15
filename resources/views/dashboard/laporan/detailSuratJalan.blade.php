@@ -22,7 +22,7 @@
                         <p><strong>Tanggal Mulai:</strong> {{ $dataSewa->start_date }}</p>
                         <p><strong>Tanggal Selesai:</strong> {{ $dataSewa->end_date }}</p>
                         <p><strong>Total Hari:</strong> {{ $dataSewa->total_days }} hari</p>
-                        <p><strong>Opsi Jarak:</strong> {{ $dataSewa->jarak ? 'Dalam Kota' : 'Luar Kota' }}</p>
+                        <p><strong>Opsi Jarak:</strong> {{ $dataSewa->jarak ? 'Luar Kota' : 'Dalam Kota' }}</p>
                         <p><strong>Opsi Pengiriman:</strong> {{ $dataSewa->delivery_option ? 'Pengantaran' : 'Penjemputan' }}</p>
                         <p><strong>Driver:</strong> {{ $dataSewa->driver->name }}</p>
                         <hr>

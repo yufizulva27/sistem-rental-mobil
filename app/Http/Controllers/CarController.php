@@ -68,25 +68,10 @@ class CarController extends Controller
         return redirect()->route('cars.index')->with('success', 'Pesanan Anda berhasil diproses!');
     }
 
-
-    private function calculateTotalAmount($totalDays, $jarak, $mobil_id)
-    {
-        $mobil = Mobil::findOrFail($mobil_id);
-        $hargaSewaPerHari = $mobil->price;
-        $totalAmount = $totalDays * $hargaSewaPerHari;
-
-        // Tambahkan biaya tambahan 20% jika jarak adalah luar kota
-        if ($jarak) {
-            $totalAmount += $totalAmount * 0.2;
-        }
-
-        return $totalAmount;
-    }
-    
     public function completeBooking(Request $request)
     {
         $request->validate([
-            'mobil_id' => 'required|exists:data_sewas,id',
+            'mobil_id' => 'required|exists:mobils,id',
             'name' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'no_telp' => 'required|string|max:15',
@@ -121,6 +106,23 @@ class CarController extends Controller
 
         return redirect()->route('cars.index')->with('success', 'Booking completed successfully!');
     }
+
+
+    private function calculateTotalAmount($totalDays, $jarak, $mobil_id)
+    {
+        $mobil = Mobil::findOrFail($mobil_id);
+        $hargaSewaPerHari = $mobil->price;
+        $totalAmount = $totalDays * $hargaSewaPerHari;
+
+        // Tambahkan biaya tambahan 20% jika jarak adalah luar kota
+        if ($jarak) {
+            $totalAmount += $totalAmount * 0.2;
+        }
+
+        return $totalAmount;
+    }
+    
+    
 
     public function getPrice($mobil_id)
     {
