@@ -52,9 +52,15 @@
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active nav-car"><a href="{{ url('/') }}" class="nav-link">Cars</a></li>
+                    <li class="nav-item nav-car {{ Request::is('/') ? 'active' : '' }}">
+                        <a href="{{ url('/') }}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item nav-car {{ Request::is('cars') ? 'active' : '' }}">
+                        <a href="{{ url('/cars') }}" class="nav-link">Cars</a>
+                    </li>
+                    
                     @if(Auth::check())
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1em;">
                                 <i class="bi bi-person"></i> {{ Auth::user()->name }}
                             </a>
@@ -67,8 +73,8 @@
                             </div>
                         </li>
                     @else
-                        <li class="nav-item active"><a href="{{ url('registrasi') }}" class="nav-link" style="font-size: 1em;">Register</a></li>
-                        <li class="nav-item active"><a href="{{ url('login') }}" class="nav-link" style="font-size: 1em;">Login</a></li>
+                        <li class="nav-item"><a href="{{ url('registrasi') }}" class="nav-link" style="font-size: 1em;">Register</a></li>
+                        <li class="nav-item"><a href="{{ url('login') }}" class="nav-link" style="font-size: 1em;">Login</a></li>
                     @endif
                 </ul>
             </div>
@@ -124,7 +130,8 @@
                                 <option value="0">Dalam Kota</option>
                                 <option value="1">Luar Kota</option>
                             </select>
-                        </div>
+                            <small class="form-text text-muted">* Memilih opsi Luar Kota akan menambah biaya 20%</small>
+                        </div>                        
                         <div class="mb-3">
                             <label for="delivery_option" class="form-label">Opsi Pengiriman</label>
                             <select class="form-control" id="delivery_option" name="delivery_option" required>
@@ -362,7 +369,7 @@
 
                             // Calculate total amount
                             var total_amount = total_days * harga_sewa_perhari;
-                            if (jarak == '0') {
+                            if (jarak == '1') {
                                 total_amount += total_amount * 0.2;
                             }
 

@@ -40,7 +40,15 @@
                         <h5>Nama Mobil: {{ $dataSewa->mobil->name }}</h5>
                         <h5>No. Polisi: {{ $dataSewa->mobil->nopol }}</h5>
                         <h5>Total Biaya: Rp. {{ $dataSewa->total_amount }}</h5>
-                    </div>
+                        @if ($dataSewa->payment_receipt)
+                        <h5>Jenis Pembayaran: Transfer</h5>
+                        @else
+                        <h5>Jenis Pembayaran: Cash</h5>
+                        @endif
+                        @if($dataSewa->jarak)
+                        <small class="form-text text-muted">* Biaya sewa luar kota ditambah 20%</small>
+                        @endif
+                    </div>                    
                 </div>
                 <button onclick="history.back()" class="btn btn-primary">Kembali</button>
             </div>

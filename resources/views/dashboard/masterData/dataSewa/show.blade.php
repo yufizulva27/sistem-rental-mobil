@@ -46,6 +46,15 @@
                                 <div class="mb-3">
                                     <strong>Nama Supir:</strong> {{ $dataSewa->driver->name }}
                                 </div>
+                                @if ($dataSewa->payment_receipt)
+                                <div class="mb-3">
+                                    <strong>Jenis Pembayaran:</strong> Transfer
+                                </div>
+                                @else
+                                <div class="mb-3">
+                                    <strong>Jenis Pembayaran:</strong> Cash
+                                </div>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -63,6 +72,9 @@
                                 <div class="mb-3">
                                     <strong>Total Biaya Sewa:</strong> Rp. {{ $dataSewa->total_amount }}
                                 </div>
+                                <div class="mb-3">
+                                    <small class="form-text text-muted">* Biaya sewa luar kota ditambah 20%</small>
+                                </div>
                             </div>
                         </div>
                         <button onclick="history.back()" class="btn btn-primary">Kembali</button>
@@ -70,7 +82,7 @@
                 </div>
             </div>
         </div>
-
+        
     </div>
 </main>
 

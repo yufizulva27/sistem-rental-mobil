@@ -2,29 +2,7 @@
 
 @section('content')
 
-<style>
-    .hero-wrap {
-        position: relative;
-        background-image: url('{{ asset('assets/landingpage/images/bg_1.jpg') }}');
-        background-size: cover;
-        background-position: center;
-        data-stellar-background-ratio: 0.5;
-    }
-    
-    .hero-wrap::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Warna hitam dengan transparansi 50% */
-        z-index: 1;
-    }
-    </style>
-    
-
-    <div class="hero-wrap " style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});" data-stellar-background-ratio="0.2">
+    <div class="hero-wrap " style="background-image: url({{ asset('assets/landingpage/images/bg_1.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
@@ -90,17 +68,6 @@
           <h2 class="mb-2">Feeatured Vehicles</h2>
         </div>
       </div>
-        @if(session('success'))
-            <div id="alert-success" class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div id="alert-error" class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
   
         <div class="row">
             @foreach($mobils as $mobil)
@@ -115,16 +82,11 @@
                                     <span class="cat">{{ $mobil->brand }}</span>
                                     <p class="price ml-auto">Rp. {{ $mobil->price }} <span>/day</span></p>
                                 </div>
-                                <p class="d-flex mb-0 d-block">
-                                    @if(Auth::check())
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyNowModal" data-mobil-id="{{ $mobil->id }}">Book Now</button>
-                                    @else
-                                        <a href="{{ route('login') }}" class="btn btn-primary">Book Now</a>
-                                    @endif
-                                    <a href="{{ route('cars.show', $mobil->id) }}" class="btn btn-secondary py-2 ml-1">Details</a>
-                                </p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('cars.show', $mobil->id) }}" class="btn btn-secondary py-2 rounded">Details</a>
+                                </div>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
                 @endif
             @endforeach

@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    public function index()
+    public function home()
     {
         $mobils = Mobil::where('tersedia', true)->get();
         $drivers = Driver::where('tersedia', true)->get();
         return view('layouts.cars.listCars', compact('mobils', 'drivers'));
+    }
+
+    public function index()
+    {
+        $mobils = Mobil::where('tersedia', true)->get();
+        $drivers = Driver::where('tersedia', true)->get();
+        return view('layouts.cars.carlist', compact('mobils', 'drivers'));
     }
 
     public function show($id)
@@ -68,13 +75,14 @@ class CarController extends Controller
         $hargaSewaPerHari = $mobil->price;
         $totalAmount = $totalDays * $hargaSewaPerHari;
 
-        if (!$jarak) {
+        // Tambahkan biaya tambahan 20% jika jarak adalah luar kota
+        if ($jarak) {
             $totalAmount += $totalAmount * 0.2;
         }
 
         return $totalAmount;
     }
-
+    
     public function completeBooking(Request $request)
     {
         $request->validate([

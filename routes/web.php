@@ -85,7 +85,8 @@ Route::put('/dashboard/dataPenyewa/{id}', [PenyewaController::class, 'update'])-
 Route::delete('/dashboard/dataPenyewa/{id}', [PenyewaController::class, 'destroy'])->name('dashboard.dataPenyewa.destroy');
 
 
-Route::get('/', [CarController::class, 'index'])->name('cars.index');
+Route::get('/', [CarController::class, 'home'])->name('cars.home');
+Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::post('/cars/bookNow', [CarController::class, 'bookNow'])->name('cars.bookNow')->middleware('auth');
 Route::post('/cars/completeBooking', [CarController::class, 'completeBooking'])->name('cars.completeBooking')->middleware('auth');
