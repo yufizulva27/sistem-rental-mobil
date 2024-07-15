@@ -35,21 +35,31 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-    if (Auth::attempt($request->only('email', 'password'))) {
-        Session::flash('success', 'Successfully logged in!');
-        return redirect()->intended('/');
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
+
+            if ($user->role == 'admin') {
+                // Redirect to the dashboard dataSewa and open in a new tab
+                echo '<script>window.open("' . route('dashboard.dataSewa.index') . '", "_blank");</script>';
+                echo '<script>window.close();</script>';
+                exit;
+            }
+
+            Session::flash('success', 'Successfully logged in!');
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
-    return back()->withErrors([
-        'email' => 'The provided credentials do not match our records.',
-    ]);
-}
 
 
     /**
